@@ -1,5 +1,6 @@
 //
-// Created by rui on 19-6-5.
+// Created by rui on 19-6-12.
+// 求sst的最大最小值
 //
 
 #include <cassert>
@@ -53,7 +54,18 @@ int main() {
     assert(status2.ok());
   }
 
+
+  // find level min-max
+  leveldb::Version *current = db2->GetCurrentVersion();
+  std::vector<leveldb::FileMetaData *> files_ = current->GetFiles(2);
+  for (int i = 0; i < files_.size(); i++) {
+    std::cout << "number: " << files_[i]->number << " ";
+    std::cout << "id_min: " << files_[i]->smallest.user_key().ToString() << " ";
+    std::cout << "id_max: " << files_[i]->largest.user_key().ToString() << std::endl;
+  }
   delete db2;
 
   return 0;
+
+
 }

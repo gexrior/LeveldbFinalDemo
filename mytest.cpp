@@ -60,28 +60,6 @@ int main() {
     }
 
 
-    std::multimap<std::string,std::string> mmap;
-
-    //iterator
-    leveldb::Iterator *iter=db2->NewIterator(leveldb::ReadOptions());
-    for(iter->SeekToFirst();iter->Valid();iter->Next())
-    {
-      mmap.insert(std::make_pair(iter->value().ToString(),iter->key().ToString()));
-    }
-
-    // find strFind
-    std::string strFind = "KOS@ecnu.cn";
-    std::multimap<std::string, std::string>::iterator it = mmap.find(strFind);
-
-    if(it !=mmap.end())
-    {
-      for(unsigned int i = 0; i < mmap.count(strFind); ++i){
-        cout<<it->second<<endl;
-        ++it;
-      }
-    }
-
-
     delete iter;
     delete db2;
 

@@ -60,7 +60,6 @@ int main() {
     }
 
 
-    delete iter;
     delete db2;
 
     return 0;
